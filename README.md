@@ -72,7 +72,13 @@ installed.
 For python development, you can build and install wally using:
 
 ```
-$ python setup.py install
+$ pip install git+git://github.com/jgriffiths/libwally-core
+```
+
+or clone the repository and from the local project dir:
+
+```
+$ pip install .
 ```
 
 It is suggested you only install this way into a virtualenv while the library

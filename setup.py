@@ -19,7 +19,11 @@ class build_py(_build_py):
 
         # Copy the so to the build output dir
         mkpath(self.build_lib)
-        copy_file('src/.libs/libwallycore.so', self.build_lib)
+        cygwin = True
+        if cygwin:
+            copy_file('./src/.libs/cygwallycore-0.dll', os.path.join(self.build_lib, 'libwallycore.dll'))
+        else:
+            copy_file('src/.libs/libwallycore.so', self.build_lib)
 
     def run(self):
         # Need to override build_py to first build the c library, then

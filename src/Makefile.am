@@ -128,18 +128,11 @@ libwallycore_la_INCLUDES = \
 
 libwallycore_la_CFLAGS = -I$(top_srcdir) -Iccan -DWALLY_CORE_BUILD=1 $(AM_CFLAGS)
 libwallycore_la_LIBADD = $(LIBADD_SECP256K1) $(noinst_LTLIBRARIES)
+libwallycore_la_LDFLAGS= -no-undefined
 
 SUBDIRS = secp256k1
 
 TESTS =
-if USE_PTHREAD
-TESTS += test_clear
-noinst_PROGRAMS = test_clear
-test_clear_SOURCES = ctest/test_clear.c
-test_clear_CFLAGS = -I$(top_srcdir)/include $(PTHREAD_CFLAGS) $(AM_CFLAGS)
-test_clear_LIBS = $(PTHREAD_LIBS)
-test_clear_LDADD = $(lib_LTLIBRARIES) @CTEST_EXTRA_STATIC@
-endif
 
 check-local: $(SWIG_PYTHON_TEST_DEPS) $(SWIG_JAVA_TEST_DEPS)
 if RUN_PYTHON_TESTS

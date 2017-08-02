@@ -250,6 +250,9 @@ AC_SUBST([LIBADD_SECP256K1])
 #
 # Python facilities
 #
+if test "x$is_osx" == "xyes"; then
+    PYTHON_EXTRA_LIBS="-Wl,-stack_size,1000000 -framework CoreFoundation -framework Python"
+fi
 AX_PYTHON_DEVEL([>= '2.7.0'])
 AM_CONDITIONAL([HAVE_PYTHON], [test "$PYTHON" != ""])
 AM_CONDITIONAL([RUN_PYTHON_TESTS], [test "$PYTHON" != "" -a "x$pythonexists" == "xyes"])
